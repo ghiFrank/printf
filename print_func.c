@@ -52,6 +52,15 @@ int _printf(const char *format, ...)
 				write(1, format, 1);
 				n++;
 			}
+			else /* handle unsupported format specifier here */
+			{
+				char p = '%';
+
+				write(1, &p, 1);
+				n++;
+				write(1, format, 1);
+				n++;
+			}
 		}
 		format++;
 	}
