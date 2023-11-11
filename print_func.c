@@ -13,8 +13,6 @@ int _printf(const char *format, ...)
 	va_list input;
 	int n = 0; /* counter of number of characcters printed */
 
-	if (format == NULL) /* checks if format is NULL */
-		return (-1);
 	va_start(input, format);
 	while (*format != '\0') /** loop that iterates through the characters of the string 
 				   and checks if it isn't '\0' */
