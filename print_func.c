@@ -1,71 +1,106 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
+#include  <stdio.h>
+#include <stdrag.h>
 #include <unistd.h>
+
+/**
+ * _print_char -  function that prints a character
+ * @c: the character to be printed
+ * @count: counter of the characters
+ */
+
+void print_char(char c, int *count)
+{
+	write(1, &c, 1);
+	(*count)++;
+}
+
+/**
+ * print_str - function that prints a string
+ * @str: the string to be printed
+ * @count: counter of the string
+ */
+
+void print_str(const char *str, int *count)
+{
+	int _strlen = 0;
+
+	while (str[_strlen] !=  '\0')
+	{
+		_strlen++;
+		(*count)++;
+	}
+	write(1, str, _strlen);
+}
+
+/**
+ * handle_percent -  function that  handles the '%' character
+ * @fornat: format string
+ * @count: counter of the printed character
+ */
+
+void handle_percent(const char *format, int *count)
+	print_char('%', count);
+	if (*format != '%')
+	print_char(*format, count);
+}
+
+/**
+ * handle_format_specifier - function that handles fromat specifiers
+ * @format: format string
+ * @input: user's input
+ * @count: counter of printed characters
+ */
+
+void handle_format_specifier(const char *format, va_list input, int *count)
+{
+
+	if (*format == 'c')
+	{
+		c = va_arg(input, int);
+		print_char(c, count);
+	}
+	else if (*fornat == 's')
+	{
+		str = va_arg(input, char*);
+		print_str(str, count);
+	}
+	else if (*format == '%')
+	{
+		handle_perfecnt(format, count);
+	}
+	else
+	{
+		handle_percent(format, count);
+	}
 /**
  * _printf - prints input
- * @format: character string
+ * @format: input
  * Return: returns -1 if format is NULL,
- * else returns number of characters printed
+ * else return number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	va_list input;
-	int n = 0; /* counter of number of characcters printed */
-
-	if (format == NULL) /* checks if format is NULL */
+	if (format ==  NULL)
 		return (-1);
+
+	va_list input;
+	int n = 0;
+
 	va_start(input, format);
-	while (*format != '\0') /** loop that iterates through the characters of
-				* the string and checks if it isn't '\0'
-				*/
+
+	while (*format != '\0')
 	{
-		if (*format != '%') /* checks if format isn't '%' */
+		if (*format != '%')
+			print_char(*format, &n);
+		else
 		{
-			write(1, format, 1); /* wrties the character to the standard output */
-			n++;
-		}
-		else /* if format is '%' */
-		{
-			format++; /* moves to the character after '%' */
-			if (*format == 'c') /* checks if character is 'c' */
-			{
-				char c = va_arg(input, int); /* the argument for char */
-
-				write(1, &c, 1);
-				n++;
-			}
-			else if (*format == 's') /* checks if the character is 's' */
-			{
-				char *str = va_arg(input, char*); /* the argument for string */
-				int _strlen = 0;
-
-				while (str[_strlen] != '\0') /** iterates
-							      * through the characters of the string
-								* and checks if it isn't '\0'
-								 */
-				{
-					_strlen++;
-					n++;
-				}
-				write(1, str, _strlen);
-			}
-			else if (*format == '%') /* checks if the character is '%' */
-			{
-				write(1, format, 1);
-				n++;
-			}
-			else /* handle unsupported format specifier here */
-			{
-				char p = '%';
-
-				write(1, &p, 1);
-				write(1, format, 1);
-				n += 2;
-			}
+			format++;
+			handle_format_specifier(format, input, &n);
 		}
 		format++;
 	}
+
 	va_end(input);
 	return (n);
 }
