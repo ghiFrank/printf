@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 /**
- * _print_char -  function that prints a character
+ * print_char -  function that prints a character
  * @c: the character to be printed
  * @count: counter of the characters
  */
@@ -35,11 +35,12 @@ void print_str(const char *str, int *count)
 
 /**
  * handle_percent -  function that  handles the '%' character
- * @fornat: format string
+ * @format: format string
  * @count: counter of the printed character
  */
 
 void handle_percent(const char *format, int *count)
+{
 	print_char('%', count);
 	if (*format != '%')
 	print_char(*format, count);
@@ -73,6 +74,7 @@ void handle_format_specifier(const char *format, va_list input, int *count)
 	{
 		handle_percent(format, count);
 	}
+}
 /**
  * _printf - prints input
  * @format: input
