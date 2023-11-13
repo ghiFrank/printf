@@ -5,7 +5,7 @@
 /**
  * _printf - prints input
  * @format: character string
- * Return: returns -1 if format is NULL, 
+ * Return: returns -1 if format is NULL,
  * else returns number of characters printed
  */
 int _printf(const char *format, ...)
@@ -16,8 +16,9 @@ int _printf(const char *format, ...)
 	if (format == NULL) /* checks if format is NULL */
 		return (-1);
 	va_start(input, format);
-	while (*format != '\0') /** loop that iterates through the characters of the string 
-				   and checks if it isn't '\0' */
+	while (*format != '\0') /** loop that iterates through the characters of
+				* the string and checks if it isn't '\0'
+				*/
 	{
 		if (*format != '%') /* checks if format isn't '%' */
 		{
@@ -39,8 +40,10 @@ int _printf(const char *format, ...)
 				char *str = va_arg(input, char*); /* the argument for string */
 				int _strlen = 0;
 
-				while (str[_strlen] != '\0') /** iterates throught the characters of the string 
-								and checks if it isn't '\0' */
+				while (str[_strlen] != '\0') /** iterates
+							      * through the characters of the string
+								* and checks if it isn't '\0'
+								 */
 				{
 					_strlen++;
 					n++;
