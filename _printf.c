@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 		{
 			if (listo[i].spec[0] == format[n + 1])
 			{
-				length += listo[i].function(input);
+				length += listo[i].func(input);
 				n = n + 2;
 			}
 			i--;
