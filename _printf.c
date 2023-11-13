@@ -13,7 +13,6 @@ int _printf(const char *format, ...)
 	va_list input;
 	int n = 0;
 	int i;
-	int j;
 	int length = 0;
 
 	va_start(input, format);
@@ -25,7 +24,7 @@ Here:
 		i = 2;
 		while (i >= 0)
 		{
-			if (list[i].spec[0] == format[n] && listo[i].spec[1] == format[n + 1])
+			if (listo[i].spec[0] == format[n] && listo[i].spec[1] == format[n + 1])
 			{
 				length += listo[i].func(input);
 				n = n + 2;
