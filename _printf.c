@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		i = 2;
 		while (i >= 0)
 		{
-			if (listo[i].spec[0] == format[n + 1])
+			if (listo[i].spec[0] == format[n] && listo[i].spec[1] == format[n + 1])
 			{
 				length += listo[i].func(input);
 				n = n + 2;
