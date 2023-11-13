@@ -19,26 +19,23 @@ int _printf(const char *format, ...)
 	va_start(input, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-	while (format[n] != '\0')
+Here:
+	while(format[n] != '\0')
 	{
 		i = 2;
-		j = 0;
-		for (; i >=0; i--)
+		while (i >= 0)
 		{
-			if (listo[i].spec[0] == format[n] && listo[i].spec[1] == format[n + 1])
+			if (list[i].spec[0] == format[n] && listo[i].spec[1] == format[n + 1])
 			{
-				length += lisot[i].func(input);
+				length += listo[i].func(input);
 				n = n + 2;
-				j = 1;
-				break;
+				goto Here;
 			}
+			i--;
 		}
-		if (!j)
-		{
-			_putchar(format[n]);
-			length++;
-			n++;
-		}
+		_putchar(format[n]);
+		length++;
+		n++;
 	}
 	va_end(input);
 	return (length);
