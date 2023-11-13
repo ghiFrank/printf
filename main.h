@@ -21,4 +21,7 @@ int _print_char(va_list input);
 int _strlen(char *s);
 int _print_str(va_list input);
 int _print_perc(void);
+int _print_int(va_list input);
+int _print_dec(va_list input);
+
 #endif

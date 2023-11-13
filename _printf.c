@@ -8,7 +8,8 @@ int _printf(const char *format, ...)
 {
 	format_t listo[] = {
 		{"%s", _print_str}, {"%c", _print_char},
-		{"%%", _print_perc}};
+		{"%%", _print_perc}, {"%d", _print_dec},
+		 {"%i", _print_int}};
 
 	va_list input;
 	int n = 0;
@@ -21,7 +22,7 @@ int _printf(const char *format, ...)
 Here:
 	while (format[n] != '\0')
 	{
-		i = 2;
+		i = 4;
 		while (i >= 0)
 		{
 			if (listo[i].spec[0] == format[n] && listo[i].spec[1] == format[n + 1])
