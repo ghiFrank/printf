@@ -58,17 +58,19 @@ void handle_format_specifier(const char *format, va_list input, int *count)
 
 	if (*format == 'c')
 	{
-		c = va_arg(input, int);
+		char c = va_arg(input, int);
+
 		print_char(c, count);
 	}
-	else if (*fornat == 's')
+	else if (*format == 's')
 	{
-		str = va_arg(input, char*);
+		char *str = va_arg(input, char*);
+
 		print_str(str, count);
 	}
 	else if (*format == '%')
 	{
-		handle_perfecnt(format, count);
+		handle_percent(format, count);
 	}
 	else
 	{
@@ -83,11 +85,11 @@ void handle_format_specifier(const char *format, va_list input, int *count)
  */
 int _printf(const char *format, ...)
 {
-	if (format ==  NULL)
-		return (-1);
-
 	va_list input;
 	int n = 0;
+
+	if (format ==  NULL)
+		return (-1);
 
 	va_start(input, format);
 
